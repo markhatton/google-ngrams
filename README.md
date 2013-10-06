@@ -54,7 +54,7 @@ Will merge all `3gram-??.csv.bz2` files into a single sorted n-grams tab-separat
 
 ### Notes
 
-The dataset is processed using a simple `awk` one-liner in `get-ngrams.sh`.  You may wish to edit this in order to modify the output format or apply alternate calculations.
+The raw dataset is processed using the `awk` script: `process-ngrams.awk`.  You may wish to edit this file to modify the output format or apply alternate calculations.
 
 The locale `LC_ALL=C` is used for the `grep` statement applying the filter in `get-ngrams.sh`.  This vastly improves the performance (and for me avoids GNU grep becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
 
