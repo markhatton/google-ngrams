@@ -42,8 +42,20 @@ Use the `-p` option to enable parallel processing, for example:
 
 Will download and process all 5-grams in parallel, with a maximum concurrency of 4 simultaneous downloads.
 
+### Merging the results into a single file
+
+    ./merge-ngrams 3
+
+Will merge all `3gram-??.csv.bz2` files into a single sorted n-grams tab-separated stream, output to stdout.  You may want to compress and/or output this stream to the filesystem, e.g.:
+
+    ./merge-ngrams 3 | bzip2 > trigrams.bz2
+
 ### Notes
 
 The dataset is processed using a simple `awk` one-liner in `get-ngrams.sh`.  You may wish to edit this in order to modify the output format or apply alternate calculations.
 
 The locale `LC_ALL=C` is used for the `grep` statement applying the filter in `get-ngrams.sh`.  This vastly improves the performance (and for me avoids GNU grep becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
+
+### Limitations
+
+At present `get-allngrams.sh` does not download the 0-9, punctuation, nor 'other' data files.  These can be downloaded using `get-ngrams`.

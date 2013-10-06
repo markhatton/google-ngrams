@@ -40,7 +40,7 @@ if [[ "$n" -lt 1 || "$n" -gt 5 ]]; then
     echo "Invalid n value: $n" >&2
     usage
 elif [[ "$n" -gt 1 ]]; then
-    c2s="$c2s $AZ"
+    c2s="_ $AZ"
 else
     c2s="_"
 fi
