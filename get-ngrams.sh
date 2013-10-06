@@ -16,7 +16,7 @@ echo "Fetching $prefix..."
 curl -s "$BASEURL-${n}gram-$PUBDATE-${prefix}.gz" | \
     gunzip | \
     LC_ALL=C grep -x "$FILTER_PATTERN" | \
-    awk -F'\t' -f $(dirname $0)/process-ngrams.awk | \
+    awk -F'\t' -f "$(dirname $0)/process-ngrams.awk" | \
     LC_ALL=C sort | \
     bzip2 > ${n}gram-${prefix}.csv.bz2
 
