@@ -36,4 +36,4 @@ Will download only 4-grams beginning with the literal "ab".
 
 The dataset is processed using a simple `awk` one-liner in `get-ngrams.sh`.  You may wish to edit this in order to modify the output format or apply alternate calculations.
 
-`LC_ALL=C` locale is used for the grep statement applying the filter.  This vastly improves the performance (and avoids the script becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
+The locale `LC_ALL=C` is used for the `grep` statement applying the filter.  This vastly improves the performance (and avoids the script becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
