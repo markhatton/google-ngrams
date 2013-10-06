@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SCRIPT=$(basename $0)
 USAGE="USAGE: $SCRIPT n prefix, e.g.: $SCRIPT 3 aa"

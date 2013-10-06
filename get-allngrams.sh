@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SCRIPT=$(basename $0)
 USAGE="USAGE: $SCRIPT n [a-z], e.g.: $SCRIPT 3 \"a b c\""
