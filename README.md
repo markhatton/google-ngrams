@@ -22,7 +22,7 @@ Where:
 
 To download a subset of the corpus:
 
-    ./get-allngrams 3 "a b c"
+    ./get-allngrams 3 a b c
 
 Will download only trigrams beginning with the letters A, B, C.
 
@@ -31,6 +31,16 @@ Or:
     ./get-ngrams 4 ab
 
 Will download only 4-grams beginning with the literal "ab".
+
+### Parallel execution
+
+N-grams may be downloaded in parallel using GNU parallel: https://www.gnu.org/software/parallel/
+
+Use the `-p` option to enable parallel processing, for example:
+
+    ./get-allngrams.sh -p 4 5
+
+Will download and process all 5-grams in parallel, with a maximum concurrency of 4 simultaneous downloads.
 
 ### Notes
 

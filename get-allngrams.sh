@@ -12,14 +12,19 @@ e.g.: $SCRIPT -p 1 a b c
 AZ="a b c d e f g h i j k l m n o p q r s t u v w x y z"
 
 parallel=
-while getopts ":p" opt; do
+while getopts ":p:" opt; do
     case $opt in
         p)
-            parallel=1
+            parallel=$OPTARG
+            shift
             shift
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
+            usage
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
             usage
             ;;
     esac
@@ -50,7 +55,7 @@ done
 done
 
 if [[ -n "$parallel" ]]; then
-    alias xargs='parallel --trim lr -ud " "'
+    alias xargs="parallel -j${parallel} --trim lr -ud ' '"
 fi
 
 echo $prefixes | xargs -n 1 -I {} "$(dirname $0)/get-ngrams.sh" "$n" {}
