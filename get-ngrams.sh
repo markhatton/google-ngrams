@@ -11,6 +11,8 @@ FILTER_PATTERN="[a-zA-Z' ]\+.[0-9][0-9][0-9][0-9].[0-9]\+.[0-9]\+"
 BASEURL="http://storage.googleapis.com/books/ngrams/books/googlebooks-eng-all"
 PUBDATE="20120701"
 
+echo "Fetching $prefix..."
+
 curl -s "$BASEURL-${n}gram-$PUBDATE-${prefix}.gz" | \
     gunzip | \
     LC_ALL=C grep -x "$FILTER_PATTERN" | \
