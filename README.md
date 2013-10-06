@@ -20,6 +20,18 @@ Where:
 - The output file is sorted by the n-gram's ASCII value
 - Only n-grams matching the pattern defined in `get-ngrams.sh` will be included, all others will be discarded.  The hard-coded pattern is all n-grams matching `[A-Za-z' ]+`, i.e. only terms containing alphabetical characters and the apostrophe character.  You may wish to modify this pattern to, e.g. include accented characters or numerals.
 
+### Parallel execution
+
+N-grams may be downloaded in parallel using GNU parallel: https://www.gnu.org/software/parallel/
+
+Use the `-p` option to enable parallel processing, for example:
+
+    ./get-allngrams.sh -p 4 5
+
+Will download and process all 5-grams in parallel, with a maximum concurrency of 4 simultaneous downloads.
+
+### Other options
+
 To download a subset of the corpus:
 
     ./get-allngrams 3 a b c
@@ -31,16 +43,6 @@ Or:
     ./get-ngrams 4 ab
 
 Will download only 4-grams beginning with the literal "ab".
-
-### Parallel execution
-
-N-grams may be downloaded in parallel using GNU parallel: https://www.gnu.org/software/parallel/
-
-Use the `-p` option to enable parallel processing, for example:
-
-    ./get-allngrams.sh -p 4 5
-
-Will download and process all 5-grams in parallel, with a maximum concurrency of 4 simultaneous downloads.
 
 ### Merging the results into a single file
 
