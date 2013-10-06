@@ -1,7 +1,7 @@
 google-ngrams
 =============
 
-Shell scripts to assist downloading &amp; processing the Google Books n-grams corpora
+Shell scripts to assist downloading &amp; processing the Google Books n-grams corpora v2: http://storage.googleapis.com/books/ngrams/books/datasetsv2.html
 
 ### Example usage
 
