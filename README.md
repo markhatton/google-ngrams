@@ -1,7 +1,7 @@
 google-ngrams
 =============
 
-Shell scripts to assist downloading &amp; processing the Google Books n-grams corpora v2: http://storage.googleapis.com/books/ngrams/books/datasetsv2.html
+Shell scripts to assist downloading &amp; processing the Google Books n-grams v2 datasets: http://storage.googleapis.com/books/ngrams/books/datasetsv2.html
 
 ### Example usage
 
@@ -36,4 +36,4 @@ Will download only 4-grams beginning with the literal "ab".
 
 The dataset is processed using a simple `awk` one-liner in `get-ngrams.sh`.  You may wish to edit this in order to modify the output format or apply alternate calculations.
 
-The locale `LC_ALL=C` is used for the `grep` statement applying the filter.  This vastly improves the performance (and avoids the script becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
+The locale `LC_ALL=C` is used for the `grep` statement applying the filter in `get-ngrams.sh`.  This vastly improves the performance (and for me avoids GNU grep becoming CPU bound) but somewhat precludes the handling of multibyte UTF-8 characters.
