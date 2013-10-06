@@ -34,23 +34,23 @@ Will download and process all 5-grams in parallel, with a maximum concurrency of
 
 To download a subset of the corpus:
 
-    ./get-allngrams 3 a b c
+    ./get-allngrams.sh 3 a b c
 
 Will download only trigrams beginning with the letters A, B, C.
 
 Or:
 
-    ./get-ngrams 4 ab
+    ./get-ngrams.sh 4 ab
 
 Will download only 4-grams beginning with the literal "ab".
 
 ### Merging the results into a single file
 
-    ./merge-ngrams 3
+    ./merge-ngrams.sh 3
 
 Will merge all `3gram-??.csv.bz2` files into a single sorted n-grams tab-separated stream, output to stdout.  You may want to compress and/or output this stream to the filesystem, e.g.:
 
-    ./merge-ngrams 3 | bzip2 > trigrams.bz2
+    ./merge-ngrams.sh 3 | bzip2 > trigrams.bz2
 
 ### Notes
 
@@ -60,4 +60,4 @@ The locale `LC_ALL=C` is used for the `grep` statement applying the filter in `g
 
 ### Limitations
 
-At present `get-allngrams.sh` does not download the 0-9, punctuation, nor 'other' data files.  These can be downloaded using `get-ngrams`.
+At present `get-allngrams.sh` does not download the 0-9, punctuation, nor 'other' data files.  These can be downloaded using `get-ngrams.sh`.
