@@ -2,10 +2,10 @@
 
 usage() {
     SCRIPT="$(basename $0)"
-    echo "Usage: $SCRIPT [-p] n [a-z]
+    echo "Usage: $SCRIPT [-p m] n [a-z]...
 
-e.g.: $SCRIPT -p 1 a b c
-      will fetch data in parallel for all unigrams with prefix a, b, or c." >&2
+e.g.: $SCRIPT -p 4 1 a b c
+      will fetch data using 4 parallel workers for all _uni_grams with prefix a, b, or c." >&2
     exit 2
 }
 
