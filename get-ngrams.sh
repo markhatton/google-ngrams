@@ -1,19 +1,20 @@
 #!/bin/sh
 
 SCRIPT=$(basename $0)
-USAGE="USAGE: $SCRIPT n prefix, e.g.: $SCRIPT 3 aa"
+USAGE="USAGE: $SCRIPT n prefix [CORPUS] [VERSION], e.g.: $SCRIPT 3 aa"
 
 n=${1?$USAGE}
 prefix=${2?$USAGE}
 
-BASEURL="http://storage.googleapis.com/books/ngrams/books/googlebooks-eng-all"
-PUBDATE="20120701"
+CORPUS=${3-"eng-all"}
+VERSION=${4-"20120701"}
 
 echo "Fetching $prefix..."
+URL="http://storage.googleapis.com/books/ngrams/books/googlebooks-$CORPUS-${n}gram-$VERSION-${prefix}.gz"
 
-curl -s "$BASEURL-${n}gram-$PUBDATE-${prefix}.gz" | \
+curl -s "$URL" | \
     gunzip | \
     awk -F'\t' -f "$(dirname $0)/process-ngrams.awk" | \
     LC_ALL=C sort | \
-    bzip2 > ${n}gram-${prefix}.csv.bz2
+    bzip2 > "$CORPUS-${n}gram-$VERSION-${prefix}.csv.bz2"
 

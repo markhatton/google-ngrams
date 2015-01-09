@@ -2,22 +2,37 @@
 
 usage() {
     SCRIPT="$(basename $0)"
-    echo "Usage: $SCRIPT [-p m] n [a-z]...
+    echo "Usage: $SCRIPT [-p <m>] [-c <corpus>] [-v <version>] n [a-z]...
 
-e.g.: $SCRIPT -p 4 1 a b c
-      will fetch data using 4 parallel workers for all _uni_grams with prefix a, b, or c." >&2
+Examples:
+    \$ $SCRIPT -p 4 1 a b c
+    will fetch corpus data using 4 parallel workers for all unigrams with prefix a, b, or c.
+
+    \$ $SCRIPT -c ger-all -v 20090715 2
+    will fetch all bigrams in the German corpus published in 2009
+" >&2
     exit 2
 }
 
 AZ="a b c d e f g h i j k l m n o p q r s t u v w x y z"
 
 parallel=
-while getopts ":p:" opt; do
+corpus=eng-all
+version=20120701
+while getopts ":c:p:v:" opt; do
     case $opt in
+        c)
+            corpus=$OPTARG
+            ;;
         p)
             parallel=$OPTARG
-            shift
-            shift
+            if [[ ! "$parallel" -gt 0 ]]; then
+                echo "Invalid p value: $parallel" >&2
+                usage
+            fi
+            ;;
+        v)
+            version=$OPTARG
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -29,6 +44,7 @@ while getopts ":p:" opt; do
             ;;
     esac
 done
+shift $((OPTIND-1))
 
 [[ $# -lt 1 ]] && usage
 
@@ -58,4 +74,4 @@ if [[ -n "$parallel" ]]; then
     alias xargs="parallel -j${parallel} --trim lr -ud ' '"
 fi
 
-echo $prefixes | xargs -n 1 -I {} "$(dirname $0)/get-ngrams.sh" "$n" {}
+echo $prefixes | xargs -n 1 -I {} "$(dirname $0)/get-ngrams.sh" "$n" {} "$corpus" "$version"
