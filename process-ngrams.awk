@@ -6,7 +6,7 @@
 # * Assumes the input corpus is sorted.
 #
 {
-    if ($1 ~ /^[a-zA-Z' ]+$/) {
+    if ( $1 ~ /^[a-zA-Z' ]+$/ ) {
         if ( $1 == last ) {
             count+=$3
         } else if ( last != "" ) {
