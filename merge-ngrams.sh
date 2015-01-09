@@ -3,12 +3,12 @@
 SCRIPT=$(basename $0)
 USAGE="USAGE: $SCRIPT n [CORPUS] [VERSION], e.g.: $SCRIPT 3"
 
+source "$(dirname $0)/common.sh"
+
 n=${1?$USAGE}
 
-CORPUS=${2-"eng-all"}
-VERSION=${3-"20120701"}
-
-AZ="a b c d e f g h i j k l m n o p q r s t u v w x y z"
+CORPUS=${2-$CORPUS}
+VERSION=${3-$VERSION}
 
 if [[ "$n" -gt 1 ]]; then
     c2s="_ $AZ"

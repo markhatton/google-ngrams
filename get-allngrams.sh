@@ -14,25 +14,23 @@ Examples:
     exit 2
 }
 
-AZ="a b c d e f g h i j k l m n o p q r s t u v w x y z"
+source "$(dirname $0)/common.sh"
 
-parallel=
-corpus=eng-all
-version=20120701
+PARALLEL=
 while getopts ":c:p:v:" opt; do
     case $opt in
         c)
-            corpus=$OPTARG
+            CORPUS=$OPTARG
             ;;
         p)
-            parallel=$OPTARG
-            if [[ ! "$parallel" -gt 0 ]]; then
-                echo "Invalid p value: $parallel" >&2
+            PARALLEL=$OPTARG
+            if [[ ! "$PARALLEL" -gt 0 ]]; then
+                echo "Invalid p value: $PARALLEL" >&2
                 usage
             fi
             ;;
         v)
-            version=$OPTARG
+            VERSION=$OPTARG
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -70,8 +68,8 @@ for c2 in $c2s; do
 done
 done
 
-if [[ -n "$parallel" ]]; then
-    alias xargs="parallel -j${parallel} --trim lr -ud ' '"
+if [[ -n "$PARALLEL" ]]; then
+    alias xargs="parallel -j${PARALLEL} --trim lr -ud ' '"
 fi
 
-echo $prefixes | xargs -n 1 -I {} "$(dirname $0)/get-ngrams.sh" "$n" {} "$corpus" "$version"
+echo $prefixes | xargs -n 1 -I {} "$(dirname $0)/get-ngrams.sh" "$n" {} "$CORPUS" "$VERSION"
