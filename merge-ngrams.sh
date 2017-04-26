@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 SCRIPT=$(basename $0)
 USAGE="USAGE: $SCRIPT n [CORPUS] [VERSION], e.g.: $SCRIPT 3"
